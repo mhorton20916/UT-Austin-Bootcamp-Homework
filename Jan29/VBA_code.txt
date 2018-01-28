@@ -1,0 +1,143 @@
+Sub analyzeData():
+    
+    Dim currentOutputRow As Integer
+    Dim currentTicker As String
+    Dim currentTotal As Double
+    Dim openPrice As Double
+    Dim closePrice As Double
+    Dim priceDelta As Double
+    Dim localMax As Double
+    Dim localMin As Double
+    Dim localGreatestVolume As Double
+    
+    For Each WS In Worksheets
+    
+        currentTicker = WS.Cells(2, 1).Value
+        currentTotal = WS.Cells(2, 7).Value
+        openPrice = WS.Cells(2, 3).Value
+        closePrice = WS.Cells(2, 6).Value
+        currentOutputRow = 2
+    
+        'Start Populating output data while iterating through input data
+    
+        WS.Range("I1").Value = "Ticker"
+        WS.Range("J1").Value = "Openning-Closing Change (Yearly)"
+        WS.Range("K1").Value = "Percent Change (Yearly)"
+        WS.Range("L1").Value = "Total Stock Volume"
+        
+        '.End(xlUp).Row is a command that is equivalent to Ctrl + Up, which skips empty cells to
+        'the first populated cell.  This is used to find the last element in Column A
+    
+        For i = 3 To WS.Cells(Rows.Count, 1).End(xlUp).Row + 1
+            If WS.Cells(i, 1).Value = currentTicker Then
+                currentTotal = currentTotal + WS.Cells(i, 7).Value
+                closePrice = WS.Cells(i, 6).Value
+            Else
+                WS.Cells(currentOutputRow, 9).Value = currentTicker
+                WS.Cells(currentOutputRow, 12).Value = currentTotal
+                priceDelta = closePrice - openPrice
+                WS.Cells(currentOutputRow, 10).Value = priceDelta
+                
+                If priceDelta > 0 Then
+                    WS.Cells(currentOutputRow, 10).Interior.ColorIndex = 4
+                ElseIf priceDelta < 0 Then
+                    WS.Cells(currentOutputRow, 10).Interior.ColorIndex = 3
+                End If
+                
+                WS.Cells(currentOutputRow, 11).NumberFormat = "0.00%"
+                If priceDelta = 0 Then
+                    WS.Cells(currentOutputRow, 11).Value = 0
+                ElseIf openPrice = 0 Then
+                    WS.Cells(currentOutputRow, 11).Value = "Undefined"
+                Else
+                    WS.Cells(currentOutputRow, 11).Value = priceDelta / openPrice
+                End If
+            
+                currentOutputRow = currentOutputRow + 1
+                currentTicker = WS.Cells(i, 1).Value
+                currentTotal = WS.Cells(i, 7).Value
+                openPrice = WS.Cells(i, 3).Value
+                closePrice = WS.Cells(i, 6).Value
+            End If
+        Next i
+        
+        
+        localMax = WS.Cells(2, 11).Value
+        localMin = localMax
+        localGreatestVolume = WS.Cells(2, 12).Value
+        
+        WS.Range("P1").Value = "Ticker"
+        WS.Range("Q1").Value = "Value"
+        WS.Range("N2").Value = "Greatest % Increase"
+        WS.Range("N3").Value = "Greatest % Decrease"
+        WS.Range("N4").Value = "Greatest Total Volume"
+        
+        WS.Range("Q2:Q3").NumberFormat = "0.00%"
+        
+        WS.Range("P2:P4").Value = WS.Cells(2, 9).Value
+        WS.Range("Q2").Value = localMax
+        WS.Range("Q3").Value = localMin
+        WS.Range("Q4").Value = localGreatestVolume
+        
+        For i = 3 To WS.Cells(Rows.Count, 9).End(xlUp).Row
+            If WS.Cells(i, 11) <> "Undefined" Then
+                If WS.Cells(i, 11).Value < localMin Then
+                    localMin = WS.Cells(i, 11).Value
+                    WS.Range("Q3").Value = localMin
+                    WS.Range("P3").Value = WS.Cells(i, 9).Value
+                End If
+                If WS.Cells(i, 11).Value > localMax Then
+                    localMax = WS.Cells(i, 11).Value
+                    WS.Range("Q2").Value = localMax
+                    WS.Range("P2").Value = WS.Cells(i, 9).Value
+                End If
+            End If
+            If WS.Cells(i, 12).Value > localGreatestVolume Then
+                localGreatestVolume = WS.Cells(i, 12).Value
+                WS.Range("Q4").Value = localGreatestVolume
+                WS.Range("P4").Value = WS.Cells(i, 9).Value
+            End If
+            
+        Next i
+    Next WS
+    
+    'The following commented block of code is slower, but functions even if the stock data is not
+    'pre-sorted.  It was not used to generate any of the submitted images, but is included as an
+    'alternative solution.
+    
+    'Dim tickers(1000) As String
+    'Dim volume(1000) As Double
+    
+    'tickers(0) = Cells(2, 1).Value
+    'volume(0) = Cells(2, 7).Value
+    
+    'For i = 3 To Cells(Rows.Count, 1).End(xlUp).Row
+    '    For ticket = 0 To UBound(tickers, 1) - 1
+    '        If tickers(ticket) = Cells(i, 1).Value Then
+    '            volume(ticket) = volume(ticket) + Cells(i, 7).Value
+            '    If i Mod 20 = 0 Then
+            '        MsgBox ("i " & i & " ticker " & tickers(ticket) & " volume " & volume(ticket))
+            '    End If
+    '            Exit For
+    '            'If this loop finds the correct ticket, then exit immediately
+    '        ElseIf tickers(ticket) = "" Then
+    '            tickers(ticket) = Cells(i, 1).Value
+    '            volume(ticket) = Cells(i, 7).Value
+            '    MsgBox ("Adding Ticker " & tickers(ticket))
+    '            Exit For
+                'If this loop makes it to this conditional, then tickers does not contain the
+                'current cell value.  Add it, then exit loop immediately
+    '        End If
+    '    Next ticket
+    'Next i
+    
+    'Range("I1").Value = "Ticker"
+    'Range("J1").Value = "Total Stock Volume"
+    'For i = 0 To UBound(tickers, 1) - 1
+    '    Cells(i + 2, 9).Value = tickers(i)
+    '    Cells(i + 2, 10).Value = volume(i)
+    'Next i    
+
+
+End Sub
+
