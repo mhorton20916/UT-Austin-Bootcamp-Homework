@@ -137,53 +137,35 @@ other_percent = other_count/player_count*100
 
 # Compiling analysis into a single table
 gender_df = pd.DataFrame([[male_count, male_percent], [female_count, female_percent], [other_count, other_percent]],index=['Male','Female','Other/Non-Disclosed'],columns=['Count','Percent'])
+gender_df = gender_df.style.format({'Percent': '{:,.2f}%'})
 gender_df
 ```
 
 
 
 
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Count</th>
-      <th>Percent</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Male</th>
-      <td>465</td>
-      <td>81.151832</td>
-    </tr>
-    <tr>
-      <th>Female</th>
-      <td>100</td>
-      <td>17.452007</td>
-    </tr>
-    <tr>
-      <th>Other/Non-Disclosed</th>
-      <td>8</td>
-      <td>1.396161</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+<style  type="text/css" >
+</style>  
+<table id="T_a64dce48_1032_11e8_98ce_3e9509432833" > 
+<thead>    <tr> 
+        <th class="blank level0" ></th> 
+        <th class="col_heading level0 col0" >Count</th> 
+        <th class="col_heading level0 col1" >Percent</th> 
+    </tr></thead> 
+<tbody>    <tr> 
+        <th id="T_a64dce48_1032_11e8_98ce_3e9509432833level0_row0" class="row_heading level0 row0" >Male</th> 
+        <td id="T_a64dce48_1032_11e8_98ce_3e9509432833row0_col0" class="data row0 col0" >465</td> 
+        <td id="T_a64dce48_1032_11e8_98ce_3e9509432833row0_col1" class="data row0 col1" >81.15%</td> 
+    </tr>    <tr> 
+        <th id="T_a64dce48_1032_11e8_98ce_3e9509432833level0_row1" class="row_heading level0 row1" >Female</th> 
+        <td id="T_a64dce48_1032_11e8_98ce_3e9509432833row1_col0" class="data row1 col0" >100</td> 
+        <td id="T_a64dce48_1032_11e8_98ce_3e9509432833row1_col1" class="data row1 col1" >17.45%</td> 
+    </tr>    <tr> 
+        <th id="T_a64dce48_1032_11e8_98ce_3e9509432833level0_row2" class="row_heading level0 row2" >Other/Non-Disclosed</th> 
+        <td id="T_a64dce48_1032_11e8_98ce_3e9509432833row2_col0" class="data row2 col0" >8</td> 
+        <td id="T_a64dce48_1032_11e8_98ce_3e9509432833row2_col1" class="data row2 col1" >1.40%</td> 
+    </tr></tbody> 
+</table> 
 
 
 
