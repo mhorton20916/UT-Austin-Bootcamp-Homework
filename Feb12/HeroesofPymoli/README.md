@@ -97,7 +97,7 @@ pa_df
 
 <style  type="text/css" >
 </style>  
-<table id="T_87dadc12_102d_11e8_bce9_3e9509432833" > 
+<table id="T_9f1a4c14_102f_11e8_9bf4_3e9509432833" > 
 <thead>    <tr> 
         <th class="blank level0" ></th> 
         <th class="col_heading level0 col0" >Number of Unique Items</th> 
@@ -106,11 +106,11 @@ pa_df
         <th class="col_heading level0 col3" >Total Revenue</th> 
     </tr></thead> 
 <tbody>    <tr> 
-        <th id="T_87dadc12_102d_11e8_bce9_3e9509432833level0_row0" class="row_heading level0 row0" >0</th> 
-        <td id="T_87dadc12_102d_11e8_bce9_3e9509432833row0_col0" class="data row0 col0" >179</td> 
-        <td id="T_87dadc12_102d_11e8_bce9_3e9509432833row0_col1" class="data row0 col1" >$ 2.93</td> 
-        <td id="T_87dadc12_102d_11e8_bce9_3e9509432833row0_col2" class="data row0 col2" >780</td> 
-        <td id="T_87dadc12_102d_11e8_bce9_3e9509432833row0_col3" class="data row0 col3" >$ 2,286.33</td> 
+        <th id="T_9f1a4c14_102f_11e8_9bf4_3e9509432833level0_row0" class="row_heading level0 row0" >0</th> 
+        <td id="T_9f1a4c14_102f_11e8_9bf4_3e9509432833row0_col0" class="data row0 col0" >179</td> 
+        <td id="T_9f1a4c14_102f_11e8_9bf4_3e9509432833row0_col1" class="data row0 col1" >$ 2.93</td> 
+        <td id="T_9f1a4c14_102f_11e8_9bf4_3e9509432833row0_col2" class="data row0 col2" >780</td> 
+        <td id="T_9f1a4c14_102f_11e8_9bf4_3e9509432833row0_col3" class="data row0 col3" >$ 2,286.33</td> 
     </tr></tbody> 
 </table> 
 
@@ -120,7 +120,8 @@ pa_df
 
 
 ```python
-gender_counts = df['Gender'].value_counts()
+unique_name_group = df.groupby(by='SN')
+gender_counts = unique_name_group['Gender'].max().value_counts()
 
 # Percentage and count of male players
 male_count = gender_counts['Male']
@@ -167,18 +168,18 @@ gender_df
   <tbody>
     <tr>
       <th>Male</th>
-      <td>633</td>
-      <td>110.471204</td>
+      <td>465</td>
+      <td>81.151832</td>
     </tr>
     <tr>
       <th>Female</th>
-      <td>136</td>
-      <td>23.734729</td>
+      <td>100</td>
+      <td>17.452007</td>
     </tr>
     <tr>
       <th>Other/Non-Disclosed</th>
-      <td>11</td>
-      <td>1.919721</td>
+      <td>8</td>
+      <td>1.396161</td>
     </tr>
   </tbody>
 </table>
@@ -227,7 +228,7 @@ pa_gender_df
 
 <style  type="text/css" >
 </style>  
-<table id="T_88f65946_102d_11e8_b89e_3e9509432833" > 
+<table id="T_9f24a00a_102f_11e8_97ea_3e9509432833" > 
 <thead>    <tr> 
         <th class="blank level0" ></th> 
         <th class="col_heading level0 col0" >Purchase Count</th> 
@@ -235,20 +236,20 @@ pa_gender_df
         <th class="col_heading level0 col2" >Total Revenue</th> 
     </tr></thead> 
 <tbody>    <tr> 
-        <th id="T_88f65946_102d_11e8_b89e_3e9509432833level0_row0" class="row_heading level0 row0" >Male</th> 
-        <td id="T_88f65946_102d_11e8_b89e_3e9509432833row0_col0" class="data row0 col0" >633</td> 
-        <td id="T_88f65946_102d_11e8_b89e_3e9509432833row0_col1" class="data row0 col1" >$ 2.95</td> 
-        <td id="T_88f65946_102d_11e8_b89e_3e9509432833row0_col2" class="data row0 col2" >$ 1,867.68</td> 
+        <th id="T_9f24a00a_102f_11e8_97ea_3e9509432833level0_row0" class="row_heading level0 row0" >Male</th> 
+        <td id="T_9f24a00a_102f_11e8_97ea_3e9509432833row0_col0" class="data row0 col0" >633</td> 
+        <td id="T_9f24a00a_102f_11e8_97ea_3e9509432833row0_col1" class="data row0 col1" >$ 2.95</td> 
+        <td id="T_9f24a00a_102f_11e8_97ea_3e9509432833row0_col2" class="data row0 col2" >$ 1,867.68</td> 
     </tr>    <tr> 
-        <th id="T_88f65946_102d_11e8_b89e_3e9509432833level0_row1" class="row_heading level0 row1" >Female</th> 
-        <td id="T_88f65946_102d_11e8_b89e_3e9509432833row1_col0" class="data row1 col0" >136</td> 
-        <td id="T_88f65946_102d_11e8_b89e_3e9509432833row1_col1" class="data row1 col1" >$ 2.82</td> 
-        <td id="T_88f65946_102d_11e8_b89e_3e9509432833row1_col2" class="data row1 col2" >$ 382.91</td> 
+        <th id="T_9f24a00a_102f_11e8_97ea_3e9509432833level0_row1" class="row_heading level0 row1" >Female</th> 
+        <td id="T_9f24a00a_102f_11e8_97ea_3e9509432833row1_col0" class="data row1 col0" >136</td> 
+        <td id="T_9f24a00a_102f_11e8_97ea_3e9509432833row1_col1" class="data row1 col1" >$ 2.82</td> 
+        <td id="T_9f24a00a_102f_11e8_97ea_3e9509432833row1_col2" class="data row1 col2" >$ 382.91</td> 
     </tr>    <tr> 
-        <th id="T_88f65946_102d_11e8_b89e_3e9509432833level0_row2" class="row_heading level0 row2" >Other/Non-Disclosed</th> 
-        <td id="T_88f65946_102d_11e8_b89e_3e9509432833row2_col0" class="data row2 col0" >11</td> 
-        <td id="T_88f65946_102d_11e8_b89e_3e9509432833row2_col1" class="data row2 col1" >$ 3.25</td> 
-        <td id="T_88f65946_102d_11e8_b89e_3e9509432833row2_col2" class="data row2 col2" >$ 35.74</td> 
+        <th id="T_9f24a00a_102f_11e8_97ea_3e9509432833level0_row2" class="row_heading level0 row2" >Other/Non-Disclosed</th> 
+        <td id="T_9f24a00a_102f_11e8_97ea_3e9509432833row2_col0" class="data row2 col0" >11</td> 
+        <td id="T_9f24a00a_102f_11e8_97ea_3e9509432833row2_col1" class="data row2 col1" >$ 3.25</td> 
+        <td id="T_9f24a00a_102f_11e8_97ea_3e9509432833row2_col2" class="data row2 col2" >$ 35.74</td> 
     </tr></tbody> 
 </table> 
 
@@ -326,7 +327,7 @@ bin_df
 
 <style  type="text/css" >
 </style>  
-<table id="T_89d6534a_102d_11e8_88dd_3e9509432833" > 
+<table id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833" > 
 <thead>    <tr> 
         <th class="blank level0" ></th> 
         <th class="col_heading level0 col0" >Purchase Count</th> 
@@ -334,45 +335,45 @@ bin_df
         <th class="col_heading level0 col2" >Total Revenue</th> 
     </tr></thead> 
 <tbody>    <tr> 
-        <th id="T_89d6534a_102d_11e8_88dd_3e9509432833level0_row0" class="row_heading level0 row0" ><10</th> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row0_col0" class="data row0 col0" >28</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row0_col1" class="data row0 col1" >$ 2.98</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row0_col2" class="data row0 col2" >$ 83.46</td> 
+        <th id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833level0_row0" class="row_heading level0 row0" ><10</th> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row0_col0" class="data row0 col0" >28</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row0_col1" class="data row0 col1" >$ 2.98</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row0_col2" class="data row0 col2" >$ 83.46</td> 
     </tr>    <tr> 
-        <th id="T_89d6534a_102d_11e8_88dd_3e9509432833level0_row1" class="row_heading level0 row1" >10-14</th> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row1_col0" class="data row1 col0" >35</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row1_col1" class="data row1 col1" >$ 2.77</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row1_col2" class="data row1 col2" >$ 96.95</td> 
+        <th id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833level0_row1" class="row_heading level0 row1" >10-14</th> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row1_col0" class="data row1 col0" >35</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row1_col1" class="data row1 col1" >$ 2.77</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row1_col2" class="data row1 col2" >$ 96.95</td> 
     </tr>    <tr> 
-        <th id="T_89d6534a_102d_11e8_88dd_3e9509432833level0_row2" class="row_heading level0 row2" >15-19</th> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row2_col0" class="data row2 col0" >133</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row2_col1" class="data row2 col1" >$ 2.91</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row2_col2" class="data row2 col2" >$ 386.42</td> 
+        <th id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833level0_row2" class="row_heading level0 row2" >15-19</th> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row2_col0" class="data row2 col0" >133</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row2_col1" class="data row2 col1" >$ 2.91</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row2_col2" class="data row2 col2" >$ 386.42</td> 
     </tr>    <tr> 
-        <th id="T_89d6534a_102d_11e8_88dd_3e9509432833level0_row3" class="row_heading level0 row3" >20-24</th> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row3_col0" class="data row3 col0" >336</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row3_col1" class="data row3 col1" >$ 2.91</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row3_col2" class="data row3 col2" >$ 978.77</td> 
+        <th id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833level0_row3" class="row_heading level0 row3" >20-24</th> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row3_col0" class="data row3 col0" >336</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row3_col1" class="data row3 col1" >$ 2.91</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row3_col2" class="data row3 col2" >$ 978.77</td> 
     </tr>    <tr> 
-        <th id="T_89d6534a_102d_11e8_88dd_3e9509432833level0_row4" class="row_heading level0 row4" >25-29</th> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row4_col0" class="data row4 col0" >125</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row4_col1" class="data row4 col1" >$ 2.96</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row4_col2" class="data row4 col2" >$ 370.33</td> 
+        <th id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833level0_row4" class="row_heading level0 row4" >25-29</th> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row4_col0" class="data row4 col0" >125</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row4_col1" class="data row4 col1" >$ 2.96</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row4_col2" class="data row4 col2" >$ 370.33</td> 
     </tr>    <tr> 
-        <th id="T_89d6534a_102d_11e8_88dd_3e9509432833level0_row5" class="row_heading level0 row5" >30-34</th> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row5_col0" class="data row5 col0" >64</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row5_col1" class="data row5 col1" >$ 3.08</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row5_col2" class="data row5 col2" >$ 197.25</td> 
+        <th id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833level0_row5" class="row_heading level0 row5" >30-34</th> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row5_col0" class="data row5 col0" >64</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row5_col1" class="data row5 col1" >$ 3.08</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row5_col2" class="data row5 col2" >$ 197.25</td> 
     </tr>    <tr> 
-        <th id="T_89d6534a_102d_11e8_88dd_3e9509432833level0_row6" class="row_heading level0 row6" >35-39</th> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row6_col0" class="data row6 col0" >42</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row6_col1" class="data row6 col1" >$ 2.84</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row6_col2" class="data row6 col2" >$ 119.40</td> 
+        <th id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833level0_row6" class="row_heading level0 row6" >35-39</th> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row6_col0" class="data row6 col0" >42</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row6_col1" class="data row6 col1" >$ 2.84</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row6_col2" class="data row6 col2" >$ 119.40</td> 
     </tr>    <tr> 
-        <th id="T_89d6534a_102d_11e8_88dd_3e9509432833level0_row7" class="row_heading level0 row7" >+40</th> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row7_col0" class="data row7 col0" >17</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row7_col1" class="data row7 col1" >$ 3.16</td> 
-        <td id="T_89d6534a_102d_11e8_88dd_3e9509432833row7_col2" class="data row7 col2" >$ 53.75</td> 
+        <th id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833level0_row7" class="row_heading level0 row7" >+40</th> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row7_col0" class="data row7 col0" >17</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row7_col1" class="data row7 col1" >$ 3.16</td> 
+        <td id="T_9f6a8ba4_102f_11e8_95d5_3e9509432833row7_col2" class="data row7 col2" >$ 53.75</td> 
     </tr></tbody> 
 </table> 
 
@@ -423,7 +424,7 @@ top_spenders_df
 
 <style  type="text/css" >
 </style>  
-<table id="T_8ae30a06_102d_11e8_a9c8_3e9509432833" > 
+<table id="T_9fa156da_102f_11e8_ae0f_3e9509432833" > 
 <thead>    <tr> 
         <th class="blank level0" ></th> 
         <th class="col_heading level0 col0" >SN</th> 
@@ -432,35 +433,35 @@ top_spenders_df
         <th class="col_heading level0 col3" >Average Purchase Price</th> 
     </tr></thead> 
 <tbody>    <tr> 
-        <th id="T_8ae30a06_102d_11e8_a9c8_3e9509432833level0_row0" class="row_heading level0 row0" >0</th> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row0_col0" class="data row0 col0" >Undirrala66</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row0_col1" class="data row0 col1" >$ 17.06</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row0_col2" class="data row0 col2" >5</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row0_col3" class="data row0 col3" >$ 3.41</td> 
+        <th id="T_9fa156da_102f_11e8_ae0f_3e9509432833level0_row0" class="row_heading level0 row0" >0</th> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row0_col0" class="data row0 col0" >Undirrala66</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row0_col1" class="data row0 col1" >$ 17.06</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row0_col2" class="data row0 col2" >5</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row0_col3" class="data row0 col3" >$ 3.41</td> 
     </tr>    <tr> 
-        <th id="T_8ae30a06_102d_11e8_a9c8_3e9509432833level0_row1" class="row_heading level0 row1" >1</th> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row1_col0" class="data row1 col0" >Saedue76</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row1_col1" class="data row1 col1" >$ 13.56</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row1_col2" class="data row1 col2" >4</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row1_col3" class="data row1 col3" >$ 3.39</td> 
+        <th id="T_9fa156da_102f_11e8_ae0f_3e9509432833level0_row1" class="row_heading level0 row1" >1</th> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row1_col0" class="data row1 col0" >Saedue76</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row1_col1" class="data row1 col1" >$ 13.56</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row1_col2" class="data row1 col2" >4</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row1_col3" class="data row1 col3" >$ 3.39</td> 
     </tr>    <tr> 
-        <th id="T_8ae30a06_102d_11e8_a9c8_3e9509432833level0_row2" class="row_heading level0 row2" >2</th> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row2_col0" class="data row2 col0" >Mindimnya67</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row2_col1" class="data row2 col1" >$ 12.74</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row2_col2" class="data row2 col2" >4</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row2_col3" class="data row2 col3" >$ 3.18</td> 
+        <th id="T_9fa156da_102f_11e8_ae0f_3e9509432833level0_row2" class="row_heading level0 row2" >2</th> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row2_col0" class="data row2 col0" >Mindimnya67</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row2_col1" class="data row2 col1" >$ 12.74</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row2_col2" class="data row2 col2" >4</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row2_col3" class="data row2 col3" >$ 3.18</td> 
     </tr>    <tr> 
-        <th id="T_8ae30a06_102d_11e8_a9c8_3e9509432833level0_row3" class="row_heading level0 row3" >3</th> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row3_col0" class="data row3 col0" >Haellysu29</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row3_col1" class="data row3 col1" >$ 12.73</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row3_col2" class="data row3 col2" >3</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row3_col3" class="data row3 col3" >$ 4.24</td> 
+        <th id="T_9fa156da_102f_11e8_ae0f_3e9509432833level0_row3" class="row_heading level0 row3" >3</th> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row3_col0" class="data row3 col0" >Haellysu29</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row3_col1" class="data row3 col1" >$ 12.73</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row3_col2" class="data row3 col2" >3</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row3_col3" class="data row3 col3" >$ 4.24</td> 
     </tr>    <tr> 
-        <th id="T_8ae30a06_102d_11e8_a9c8_3e9509432833level0_row4" class="row_heading level0 row4" >4</th> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row4_col0" class="data row4 col0" >Eoda93</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row4_col1" class="data row4 col1" >$ 11.58</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row4_col2" class="data row4 col2" >3</td> 
-        <td id="T_8ae30a06_102d_11e8_a9c8_3e9509432833row4_col3" class="data row4 col3" >$ 3.86</td> 
+        <th id="T_9fa156da_102f_11e8_ae0f_3e9509432833level0_row4" class="row_heading level0 row4" >4</th> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row4_col0" class="data row4 col0" >Eoda93</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row4_col1" class="data row4 col1" >$ 11.58</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row4_col2" class="data row4 col2" >3</td> 
+        <td id="T_9fa156da_102f_11e8_ae0f_3e9509432833row4_col3" class="data row4 col3" >$ 3.86</td> 
     </tr></tbody> 
 </table> 
 
@@ -507,7 +508,7 @@ pop_items_df
 
 <style  type="text/css" >
 </style>  
-<table id="T_8bb60fac_102d_11e8_a7fe_3e9509432833" > 
+<table id="T_a0096b7e_102f_11e8_af17_3e9509432833" > 
 <thead>    <tr> 
         <th class="blank level0" ></th> 
         <th class="col_heading level0 col0" >Item Name</th> 
@@ -517,40 +518,40 @@ pop_items_df
         <th class="col_heading level0 col4" >Total Revenue</th> 
     </tr></thead> 
 <tbody>    <tr> 
-        <th id="T_8bb60fac_102d_11e8_a7fe_3e9509432833level0_row0" class="row_heading level0 row0" >0</th> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row0_col0" class="data row0 col0" >Final Critic</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row0_col1" class="data row0 col1" >14</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row0_col2" class="data row0 col2" >92</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row0_col3" class="data row0 col3" >$ 1.36</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row0_col4" class="data row0 col4" >$ 19.04</td> 
+        <th id="T_a0096b7e_102f_11e8_af17_3e9509432833level0_row0" class="row_heading level0 row0" >0</th> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row0_col0" class="data row0 col0" >Final Critic</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row0_col1" class="data row0 col1" >14</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row0_col2" class="data row0 col2" >92</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row0_col3" class="data row0 col3" >$ 1.36</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row0_col4" class="data row0 col4" >$ 19.04</td> 
     </tr>    <tr> 
-        <th id="T_8bb60fac_102d_11e8_a7fe_3e9509432833level0_row1" class="row_heading level0 row1" >1</th> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row1_col0" class="data row1 col0" >Betrayal, Whisper of Grieving Widows</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row1_col1" class="data row1 col1" >11</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row1_col2" class="data row1 col2" >39</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row1_col3" class="data row1 col3" >$ 2.35</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row1_col4" class="data row1 col4" >$ 25.85</td> 
+        <th id="T_a0096b7e_102f_11e8_af17_3e9509432833level0_row1" class="row_heading level0 row1" >1</th> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row1_col0" class="data row1 col0" >Betrayal, Whisper of Grieving Widows</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row1_col1" class="data row1 col1" >11</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row1_col2" class="data row1 col2" >39</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row1_col3" class="data row1 col3" >$ 2.35</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row1_col4" class="data row1 col4" >$ 25.85</td> 
     </tr>    <tr> 
-        <th id="T_8bb60fac_102d_11e8_a7fe_3e9509432833level0_row2" class="row_heading level0 row2" >2</th> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row2_col0" class="data row2 col0" >Arcane Gem</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row2_col1" class="data row2 col1" >11</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row2_col2" class="data row2 col2" >84</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row2_col3" class="data row2 col3" >$ 2.23</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row2_col4" class="data row2 col4" >$ 24.53</td> 
+        <th id="T_a0096b7e_102f_11e8_af17_3e9509432833level0_row2" class="row_heading level0 row2" >2</th> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row2_col0" class="data row2 col0" >Arcane Gem</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row2_col1" class="data row2 col1" >11</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row2_col2" class="data row2 col2" >84</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row2_col3" class="data row2 col3" >$ 2.23</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row2_col4" class="data row2 col4" >$ 24.53</td> 
     </tr>    <tr> 
-        <th id="T_8bb60fac_102d_11e8_a7fe_3e9509432833level0_row3" class="row_heading level0 row3" >3</th> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row3_col0" class="data row3 col0" >Stormcaller</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row3_col1" class="data row3 col1" >10</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row3_col2" class="data row3 col2" >30</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row3_col3" class="data row3 col3" >$ 4.15</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row3_col4" class="data row3 col4" >$ 41.50</td> 
+        <th id="T_a0096b7e_102f_11e8_af17_3e9509432833level0_row3" class="row_heading level0 row3" >3</th> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row3_col0" class="data row3 col0" >Stormcaller</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row3_col1" class="data row3 col1" >10</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row3_col2" class="data row3 col2" >30</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row3_col3" class="data row3 col3" >$ 4.15</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row3_col4" class="data row3 col4" >$ 41.50</td> 
     </tr>    <tr> 
-        <th id="T_8bb60fac_102d_11e8_a7fe_3e9509432833level0_row4" class="row_heading level0 row4" >4</th> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row4_col0" class="data row4 col0" >Woeful Adamantite Claymore</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row4_col1" class="data row4 col1" >9</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row4_col2" class="data row4 col2" >175</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row4_col3" class="data row4 col3" >$ 1.24</td> 
-        <td id="T_8bb60fac_102d_11e8_a7fe_3e9509432833row4_col4" class="data row4 col4" >$ 11.16</td> 
+        <th id="T_a0096b7e_102f_11e8_af17_3e9509432833level0_row4" class="row_heading level0 row4" >4</th> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row4_col0" class="data row4 col0" >Woeful Adamantite Claymore</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row4_col1" class="data row4 col1" >9</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row4_col2" class="data row4 col2" >175</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row4_col3" class="data row4 col3" >$ 1.24</td> 
+        <td id="T_a0096b7e_102f_11e8_af17_3e9509432833row4_col4" class="data row4 col4" >$ 11.16</td> 
     </tr></tbody> 
 </table> 
 
@@ -585,80 +586,60 @@ df_by_pop_items.drop('index',axis=1,inplace=True)
 
 # Displaying analysis in a single table, after saving to a new df as above
 most_profitable_df = pd.DataFrame(df_by_pop_items[:5])
+most_profitable_df = most_profitable_df.style.format({'Price': '$ {:,.2f}','Total Revenue': '$ {:,.2f}'})
 most_profitable_df
 ```
 
 
 
 
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Item Name</th>
-      <th>Purchase Count</th>
-      <th>Item ID</th>
-      <th>Price</th>
-      <th>Total Revenue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Stormcaller</td>
-      <td>10</td>
-      <td>30</td>
-      <td>4.15</td>
-      <td>41.50</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Retribution Axe</td>
-      <td>9</td>
-      <td>34</td>
-      <td>4.14</td>
-      <td>37.26</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Spectral Diamond Doomblade</td>
-      <td>7</td>
-      <td>115</td>
-      <td>4.25</td>
-      <td>29.75</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Orenmir</td>
-      <td>6</td>
-      <td>32</td>
-      <td>4.95</td>
-      <td>29.70</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Singed Scalpel</td>
-      <td>6</td>
-      <td>103</td>
-      <td>4.87</td>
-      <td>29.22</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+<style  type="text/css" >
+</style>  
+<table id="T_50e317fe_1030_11e8_9b9b_3e9509432833" > 
+<thead>    <tr> 
+        <th class="blank level0" ></th> 
+        <th class="col_heading level0 col0" >Item Name</th> 
+        <th class="col_heading level0 col1" >Purchase Count</th> 
+        <th class="col_heading level0 col2" >Item ID</th> 
+        <th class="col_heading level0 col3" >Price</th> 
+        <th class="col_heading level0 col4" >Total Revenue</th> 
+    </tr></thead> 
+<tbody>    <tr> 
+        <th id="T_50e317fe_1030_11e8_9b9b_3e9509432833level0_row0" class="row_heading level0 row0" >0</th> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row0_col0" class="data row0 col0" >Stormcaller</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row0_col1" class="data row0 col1" >10</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row0_col2" class="data row0 col2" >30</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row0_col3" class="data row0 col3" >$ 4.15</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row0_col4" class="data row0 col4" >$ 41.50</td> 
+    </tr>    <tr> 
+        <th id="T_50e317fe_1030_11e8_9b9b_3e9509432833level0_row1" class="row_heading level0 row1" >1</th> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row1_col0" class="data row1 col0" >Retribution Axe</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row1_col1" class="data row1 col1" >9</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row1_col2" class="data row1 col2" >34</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row1_col3" class="data row1 col3" >$ 4.14</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row1_col4" class="data row1 col4" >$ 37.26</td> 
+    </tr>    <tr> 
+        <th id="T_50e317fe_1030_11e8_9b9b_3e9509432833level0_row2" class="row_heading level0 row2" >2</th> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row2_col0" class="data row2 col0" >Spectral Diamond Doomblade</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row2_col1" class="data row2 col1" >7</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row2_col2" class="data row2 col2" >115</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row2_col3" class="data row2 col3" >$ 4.25</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row2_col4" class="data row2 col4" >$ 29.75</td> 
+    </tr>    <tr> 
+        <th id="T_50e317fe_1030_11e8_9b9b_3e9509432833level0_row3" class="row_heading level0 row3" >3</th> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row3_col0" class="data row3 col0" >Orenmir</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row3_col1" class="data row3 col1" >6</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row3_col2" class="data row3 col2" >32</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row3_col3" class="data row3 col3" >$ 4.95</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row3_col4" class="data row3 col4" >$ 29.70</td> 
+    </tr>    <tr> 
+        <th id="T_50e317fe_1030_11e8_9b9b_3e9509432833level0_row4" class="row_heading level0 row4" >4</th> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row4_col0" class="data row4 col0" >Singed Scalpel</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row4_col1" class="data row4 col1" >6</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row4_col2" class="data row4 col2" >103</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row4_col3" class="data row4 col3" >$ 4.87</td> 
+        <td id="T_50e317fe_1030_11e8_9b9b_3e9509432833row4_col4" class="data row4 col4" >$ 29.22</td> 
+    </tr></tbody> 
+</table> 
 
 
