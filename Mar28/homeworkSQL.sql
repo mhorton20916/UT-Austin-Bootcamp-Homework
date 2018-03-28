@@ -111,3 +111,87 @@ GROUP BY P.customer_id
 ORDER BY C.last_name;
 
 -- 7a
+SELECT title
+FROM film
+WHERE TITLE LIKE 'K%' OR title LIKE 'Q%' AND original_language_id IN
+(
+ SELECT language_id
+ FROM language
+ WHERE name='ENGLISH'
+);
+
+-- 7b
+SELECT first_name, last_name
+FROM actor
+WHERE actor_id IN
+(
+ SELECT actor_id
+ FROM film_actor
+ WHERE film_id IN
+ (
+  SELECT film_id
+  FROM film
+  WHERE title='Alone Trip'
+ )
+);
+
+-- 7c
+SELECT C.first_name, C.last_name, C.email
+FROM customer C JOIN (
+	 address A JOIN (
+	 city CI JOIN country CO 
+        ON CI.country_id=CO.country_id) 
+        ON A.city_id=CI.city_id) 
+        ON C.address_id=A.address_id
+WHERE CO.country='CANADA';
+
+-- 7d
+SELECT title
+FROM film
+WHERE film_id IN
+(
+ SELECT film_id
+ FROM film_category
+ WHERE category_id IN
+ (
+  SELECT category_id
+  FROM category
+  WHERE name='FAMILY'
+ )
+);
+
+-- 7e
+SELECT F.title, COUNT(R.rental_ID) AS 'times_rented'
+FROM film F RIGHT JOIN (inventory I JOIN rental R ON I.inventory_id=R.inventory_id) ON F.film_id=I.film_id
+GROUP BY F.film_id
+ORDER BY COUNT(R.rental_ID) DESC;
+
+-- 7f
+SELECT STO.store_id, SUM(P.amount)
+FROM store STO JOIN payment P ON STO.manager_staff_id=P.staff_id
+GROUP BY STO.store_id;
+
+-- 7g
+SELECT STO.store_id, CI.city, CO.country
+FROM store STO JOIN (address A JOIN (city CI JOIN country CO ON CI.country_id=CO.country_id) ON A.city_id=CI.city_id) ON STO.address_id=A.address_id;
+
+-- 7h
+SELECT CAT.name, SUM(P.amount)
+FROM category CAT JOIN (film_category FC JOIN (inventory I JOIN (rental R JOIN payment P ON R.rental_id=P.rental_id) ON I.inventory_id=R.inventory_id) ON FC.film_id=I.film_ID) ON CAT.category_id=FC.category_id
+GROUP BY CAT.name
+ORDER BY SUM(P.amount) DESC
+LIMIT 5;
+
+-- 8a
+CREATE VIEW top_five AS
+SELECT CAT.name, SUM(P.amount)
+FROM category CAT JOIN (film_category FC JOIN (inventory I JOIN (rental R JOIN payment P ON R.rental_id=P.rental_id) ON I.inventory_id=R.inventory_id) ON FC.film_id=I.film_ID) ON CAT.category_id=FC.category_id
+GROUP BY CAT.name
+ORDER BY SUM(P.amount) DESC
+LIMIT 5;
+
+-- 8b
+SELECT * FROM top_five;
+
+-- 8c
+DROP VIEW top_five;
