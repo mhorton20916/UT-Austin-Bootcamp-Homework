@@ -24,6 +24,10 @@ session=Session(bind=engine)
 conn=engine.connect()
 
 
+
+
+
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -34,6 +38,8 @@ def welcome():
         f'/api/v1.0/precipitation<br/>'
         f'/api/v1.0/stations<br/>'
         f'/api/v1.0/tobs<br/>'
+        f'/api/v1.0/YYYY-mm-dd<br/>'
+        f'/api/v1.0/YYYY-mm-dd/YYYY-mm-dd<br/>'
     )
 
 @app.route('/api/v1.0/precipitation')
@@ -46,7 +52,10 @@ def precipitation():
         last_12_months_df.set_value(index, 'date', row['date'].strftime('%Y-%m-%d').split(' ')[0])
     last_12_months_df.set_index('date',inplace=True)
     temp_dict = last_12_months_df.to_dict()['prcp']
-    return jsonify(temp_dict)
+    new_dict = {}
+    for item in temp_dict.keys():
+        new_dict[item.strftime('%Y-%m-%d')] = temp_dict[item]
+    return jsonify(new_dict)
 
 @app.route('/api/v1.0/stations')
 def stations():
@@ -60,10 +69,46 @@ def tobs():
     '''Return all temperature observations over the last year'''
     recent_temp_obs = session.query(Measurement.tobs).filter(Measurement.date>(dt.datetime.now()-dt.timedelta(days=365)))
     recent_temp_obs_df = pd.read_sql(recent_temp_obs.statement,recent_temp_obs.session.bind)
-    return jsonify(recent_temp_obs_df.to_dict())
+    temp_dict = recent_temp_obs_df.to_dict()['tobs']
+    new_dict = {}
+    for item in temp_dict.keys():
+        new_dict[int(item)] = int(temp_dict[item])
+    return jsonify(new_dict)
 
-#@app.route('/api/v1.0/<start>')
-#    '''Return min, avg, and max temperature since <start>'''
+@app.route('/api/v1.0/<start>/<end>')
+def calc_temps(start,end):
+    '''Return min, avg, and max temperature from <start> to <end>'''
+    start_datetime = dt.datetime.strptime(start,'%Y-%m-%d')
+    end_datetime = dt.datetime.strptime(end,'%Y-%m-%d')
+    temp_q = session.query(Measurement.tobs).filter(Measurement.date>start_datetime,Measurement.date<end_datetime)
+    temp_df = pd.read_sql(temp_q.statement,temp_q.session.bind)
+    print(temp_df.head())
+    max_temp = int(temp_df['tobs'].max())
+    min_temp = int(temp_df['tobs'].min())
+    avg_temp = float(temp_df['tobs'].mean())
+    temp_dict = {}
+    temp_dict['max_temp'] = max_temp
+    temp_dict['min_temp'] = min_temp
+    temp_dict['avg_temp'] = avg_temp
+    return jsonify(temp_dict)
+    
+@app.route('/api/v1.0/<start>')
+def calc_temps_no_end(start):
+    '''Return min, avg, and max temperature from <start> onward'''
+    start_datetime = dt.datetime.strptime(start,'%Y-%m-%d')
+    end_datetime = dt.datetime.now()
+    temp_q = session.query(Measurement.tobs).filter(Measurement.date>start_datetime,Measurement.date<end_datetime)
+    temp_df = pd.read_sql(temp_q.statement,temp_q.session.bind)
+    print(temp_df.head())
+    max_temp = int(temp_df['tobs'].max())
+    min_temp = int(temp_df['tobs'].min())
+    avg_temp = float(temp_df['tobs'].mean())
+    temp_dict = {}
+    temp_dict['max_temp'] = max_temp
+    temp_dict['min_temp'] = min_temp
+    temp_dict['avg_temp'] = avg_temp
+    return jsonify(temp_dict)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
