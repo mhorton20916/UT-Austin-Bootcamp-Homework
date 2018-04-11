@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Latitude Analysis</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+    <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+        <a class='navbar-brand' href="index.html">Main</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class='navbar-nav ml-auto'>
+                <li class='nav-item dropdown'>
+                    <a class='nav-link dropdown-toggle' id='navbarDropdownMenu' href="#" data-toggle='dropdown' role='button' aria-haspopup="true" aria-expanded="false">
+                        Plots
+                    </a>
+                    <div class='dropdown-menu' aria-labelledby="navbarDropdownMenu">
+                        <a class='dropdown-item' href="latitude_vs_maxtemp.html">Max Temperature vs. Latitude</a>
+                        <a class='dropdown-item' href="latitude_vs_humidity.html">Humidity vs. Latitude</a>
+                        <a class='dropdown-item' href="latitude_vs_cloudiness.html">Cloudiness vs. Latitude</a>
+                        <a class='dropdown-item' href="latitude_vs_windspeed.html">Wind Speed vs. Latitude</a>
+                    </div>
+                </li>
+                <li class='nav-item active'>
+                    <a class='nav-link' href="comparison.html">Comparison</a> 
+                </li>
+                <li class='nav-item active'>
+                        <a class='nav-link' href="data.html">Data</a> 
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1 style='margin-left:5%;margin-top:.2in;margin-bottom:0%;color:#20b2aa;'>Weather Analysis by Latitude</h1>
+    <hr>
+    <h3 style="margin-left:5%;margin-top:.2in;margin-bottom:0%;color:#20b2aa;">How does Latitude affect weather?</h3>
+ <!--   <img  src="output_12_0.png" alt="Cloudiness vs. Latitude, as seen on Feb 26 2018" style='margin-left:5%;width:auto'> -->
+    <p style='margin:2%5%;'>
+        In order to answer the question above, a number of cities across a variety of latitudes were sourced using the python <a href="https://github.com/wingchen/citipy">"citipy"</a> library.  500+ cities were selected, 
+        and a script was used to pull weather data at these locations from the <a href="https://openweathermap.org/api">OpenWeatherMap API</a>, focusing on four specific criteria: maximum temperature for the day, humidity, cloudiness, and wind speed.
+        This data was pulled on February 26, 2018, and is available under <a href="data.html">data.</a> Matplotlib was used to graph the data across all cities by latitude, and a number of trends were observed. All plots are available under 
+        <a href="comparison.html">comparison,</a> and each specific analysis is available in the drop down menu above, or by clicking any of the plots presented below.  The script used to pull this data is available on <a href="https://github.com/mhorton20916/UT-Austin-Bootcamp-Homework/tree/master/Feb28">github.</a>
+    </p>
+    <hr>
+    <h3 style="margin-left:5%;margin-top:.2in;margin-bottom:0%;color:#20b2aa;">Graphs and Visualizations:</h3>
+    <a href="latitude_vs_maxtemp.html" target="_blank">
+        <img  src="output_10_0.png" alt="Temperature vs. Latitude, as seen on Feb 26 2018" style='margin-left:5%;width:auto'>
+    </a>
+    <a href="latitude_vs_humidity.html" target="_blank">
+        <img  src="output_11_0.png" alt="Humidity vs. Latitude, as seen on Feb 26 2018" style='margin-left:5%;width:auto'>
+    </a>
+    <a href="latitude_vs_cloudiness.html" target="_blank">
+        <img  src="output_12_0.png" alt="Cloudiness vs. Latitude, as seen on Feb 26 2018" style='margin-left:5%;width:auto'>
+    </a>
+    <a href="latitude_vs_windspeed.html" target="_blank">
+        <img  src="output_13_0.png" alt="Wind Speed vs. Latitude, as seen on Feb 26 2018" style='margin-left:5%;width:auto'>
+    </a>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
