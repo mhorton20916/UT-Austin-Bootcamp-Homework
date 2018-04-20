@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Data</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container text-center">
+    <div class='jumbotron'>
+      <h1>Mars Data</h1>
+      <form action="/scrape"><button type = 'submit' class='btn btn-primary'>Scrape</button></form>
+    </div>
+  </div>
+  <div class='container' style='margin: 0%5%'>
+    <div class='row'>
+      <div class='col-12'>
+        <h2>Latest Mars Headline:</h2>
+        <h4>{{data.heading|safe}}</h4>
+        <p>{{data.teaser|safe}}</p>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-sm-8'>
+        <h2>Latest Featured Mars Image</h2>
+        <img src={{data.featured_image_url|safe}} alt="Latest Featured Image of Mars" title="Latest Featured Image of Mars" style='max-width:100%'>
+      </div>
+      <div class='col-sm-4'>
+        <div>
+          
+            <h2>Current Mars Weather:</h2>
+            <p>{{data.mars_weather|safe}}</p>
+          
+        </div>
+        <div>
+            <h2>Mars Features</h2>
+            <table>{{data.table_html|safe}}</table>
+        </div>
+      </div>
+    </div>  
+    <div class='row'>
+      <h2 style='text-align:center'>Mars Hemispheres</h2>
+      <div class='col-sm-6'>
+        <h2>{{data.hemisphere_urls[0].title|safe}}</h2>
+        <img src={{data.hemisphere_urls[0].img_url|safe}} alt={{data.hemisphere_urls[0].title|safe}} title={{data.hemisphere_urls[0].title|safe}} style='max-width:100%'>
+      </div>
+      <div class='col-sm-6'>
+        <h2>{{data.hemisphere_urls[1].title|safe}}</h2>
+        <img src={{data.hemisphere_urls[1].img_url|safe}} alt={{data.hemisphere_urls[1].title|safe}} title={{data.hemisphere_urls[1].title|safe}} style='max-width:100%'>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-sm-6'>
+        <h2>{{data.hemisphere_urls[2].title|safe}}</h2>
+        <img src={{data.hemisphere_urls[2].img_url|safe}} alt={{data.hemisphere_urls[2].title|safe}} title={{data.hemisphere_urls[2].title|safe}} style='max-width:100%'>
+      </div>
+      <div class='col-sm-6'>
+        <h2>{{data.hemisphere_urls[3].title|safe}}</h2>
+        <img src={{data.hemisphere_urls[3].img_url|safe}} alt={{data.hemisphere_urls[3].title|safe}} title={{data.hemisphere_urls[3].title|safe}} style='max-width:100%'>
+      </div>
+    </div>
+  </div>
+    
+  
+  <script>
+    var $btn = document.querySelector(".jumbotron .btn.btn-primary");
+    $btn.addEventListener('click',handleClick);
+
+    function handleClick() {
+      console.log('clock')
+    }
+  </script>
+</body>
+
+
+
+</html>

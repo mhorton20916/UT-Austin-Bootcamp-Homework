@@ -10,3 +10,6 @@
 
 #Config files
 *config.*
+
+#pycache
+*.pyc
