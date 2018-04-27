@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Do you want to believe?</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class='container text-center'>
+        <div class='jumbotron'>
+            <h1>THE TRUTH IS OUT THERE</h1>
+        </div>
+    </div>
+    <div class='container'>
+        <div class='row justify-content-end'>
+            <div class='col-md-12'>
+                Date:
+                <input type="text" placeholder="mm/dd/yyyy" id='dateField'>
+            </div>
+            <div class='col-md-12'>
+                City:
+                <input type="text" placeholder="City" id='cityField'>
+            </div>
+            <div class='col-md-12'>
+                State (2 letter code):
+                <input type="text" placeholder="State" id='stateField'>
+            </div>  
+            <div class='col-md-12'>
+                Country (2 letter code):
+                <input type="text" placeholder="Country" id='countryField'>
+            </div>  
+            <div class='col-md-12'>
+                Shape:
+                <input type="text" placeholder="shape?" id='shapeField'>
+            </div>
+            <div class='col-md-12'>
+                <a class='btn btn-default' id='filterSearchbtn'>Filter List</a>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-12'>
+                <table class='table table-striped' id='dataHere'>
+                    <thead>
+                        <tr>
+                            <th data-field='date'>Date</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Country</th>
+                            <th>Shape</th>
+                            <th>Duration</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination" id='pageList'>
+                <!-- <li>
+                <a href="#" aria-label="Previous" id='prevPageButton'>
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+                </li> -->
+                <!-- <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li> -->
+                <!-- <li>
+                <a href="#" aria-label="Next" id='nextPageButton'>
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+                </li> -->
+                <li>
+                    Results per Page:
+                    <select name="Results per Page" id="pageLimit">
+                        <option value="5">5</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script>
+    <script src='data.js'></script>
+
+    <script type='text/javascript'>
+        
+        var tbl = d3.select('#dataHere');
+        var tb = tbl.append('tbody');
+
+        var $filterBtn = d3.select('#filterSearchbtn');
+        var $dateField = d3.select('#dateField');
+        var $cityField = d3.select('#cityField');
+        var $stateField = d3.select('#stateField');
+        var $countryField = d3.select('#countryField');
+        var $shapeField = d3.select('#shapeField');
+
+        var $pageLimitField = d3.select('#pageLimit');
+        var $prevPage = d3.select('#prevPageButton');
+        var $nextPage = d3.select('#nextPageButton');
+        var pgList = d3.select('#pageList');
+
+        // function buildTable() {
+        //     let headings = Object.keys(dataSet[0]);
+        //     for (head in headings) {
+        //         th.append('td').text(headings[head]);
+        //     }
+        // }
+
+        var filteredData = dataSet;
+        var currentPage = 1;
+
+            //Part 1 filter function.  Commenting incase Part 2 function fails
+        // function filterData() {
+        //     filteredData = [];
+        //     let dateFilter = new Date($dateField.node().value);
+        //     //console.log(dateFilter);
+        //     filteredData = dataSet.filter(function(elem) {
+        //         let elemDate = new Date(elem.datetime);
+        //         return elemDate.valueOf()===dateFilter.valueOf();
+        //     } );
+        //     //console.log(filteredData)
+        //     renderTable();
+        // }
+
+        function filterData() {
+        
+            filteredData = dataSet;
+            if($dateField.node().value) {
+                let dateFilter = new Date($dateField.node().value);
+                filteredData = filteredData.filter(function(elem) {
+                    let elemDate = new Date(elem.datetime);
+                    return elemDate.valueOf()===dateFilter.valueOf();
+                } );
+            }
+            if($cityField.node().value) {
+                let cityFilter = $cityField.node().value.toLowerCase();
+                filteredData = filteredData.filter(function(elem) {
+                    let elemCity = elem.city.toLowerCase();
+                    return elemCity===cityFilter;
+                } );
+            }
+            if($stateField.node().value) {
+                let stateFilter = $stateField.node().value.toLowerCase();
+                filteredData = filteredData.filter(function(elem) {
+                    let elemState = elem.state.toLowerCase();
+                    return elemState===stateFilter;
+                } );
+            }
+            if($countryField.node().value) {
+                let countryFilter = $countryField.node().value.toLowerCase();
+                filteredData = filteredData.filter(function(elem) {
+                    let elemCountry = elem.country.toLowerCase();
+                    return elemCountry===countryFilter;
+                } );
+            }
+            if($shapeField.node().value) {
+                let shapeFilter = $shapeField.node().value.toLowerCase();
+                filteredData = filteredData.filter(function(elem) {
+                    let elemShape = elem.shape.toLowerCase();
+                    return elemShape===shapeFilter;
+                } );
+            }
+            //console.log(dateFilter);
+            
+            //console.log(filteredData)
+            buildPages();
+        }
+
+        function renderTable(pl,cp,np) {
+
+            tb.selectAll('tr').remove()
+
+            if(filteredData.length<=pl) {
+                for(row in filteredData) {
+                    let curRow = tb.append('tr');
+                    for(col in filteredData[row]) {
+                        curRow.append('td').text(filteredData[row][col]);
+                    }
+                }
+            } else if(cp!=np) {
+                let tempData = filteredData.slice(pl*(cp-1),pl*cp);
+                for(row in tempData) {
+                    let curRow = tb.append('tr');
+                    for(col in tempData[row]) {
+                        curRow.append('td').text(tempData[row][col]);
+                    }
+                }
+            } else {
+                let tempData = filteredData.slice(pl*(cp-1));
+                for(row in tempData) {
+                    let curRow = tb.append('tr');
+                    for(col in tempData[row]) {
+                        curRow.append('td').text(tempData[row][col]);
+                    }
+                }
+            }
+            
+
+        }
+        var numPages = 1;
+        function buildPages() {
+            var pageLim = parseInt($pageLimitField.node().value);
+            //console.log(pageLim)
+            numPages = Math.ceil(filteredData.length/pageLim)
+            pgList.selectAll('a').remove()
+            pgList.append('li').append('a')
+                .attr('aria-label','Previous')
+                .attr('id','prevPageButton')
+                .append('span').attr('aria-hidden','true')
+                .attr('style','pointer-events: none')
+                .text('\u00ab')
+            
+            if(currentPage>numPages) {
+                currentPage=numPages;
+            }
+            if(numPages > 7) {
+                if(currentPage<6) {
+                    for(var x = 0;x<7;x++) {
+                        pgList.append('li').append('a').text(x+1).attr('class','pageNum');
+                    }
+                }else if(numPages-currentPage<8) {
+                    for(var x = numPages-7;x<numPages;x++) {
+                        pgList.append('li').append('a').text(x+1).attr('class','pageNum');
+                    }
+                }else {
+                    for(var x = currentPage-4;x<currentPage+3;x++) {
+                        pgList.append('li').append('a').text(x+1).attr('class','pageNum');
+                    }
+                }
+            } else {
+                for(var x = 0;x<numPages;x++) {
+                    pgList.append('li').append('a').text(x+1).attr('class','pageNum');
+                }
+            }
+
+            // <a href="#" aria-label="Next" id='nextPageButton'>
+            //         <span aria-hidden="true">&raquo;</span>
+            //     </a>
+
+            pgList.append('li').append('a')
+                .attr('aria-label','Next')
+                .attr('id','nextPageButton')
+                .append('span').attr('aria-hidden','true')
+                .attr('style','pointer-events: none')
+                .text('\u00bb')
+            
+            pgList.selectAll('li').filter(function() {return d3.select(this).text()==currentPage}).attr('class','active')
+            renderTable(pageLim,currentPage,numPages);
+        }
+        
+        $filterBtn.on('click',filterData);
+        $dateField.on('keyup',function() {
+            if(d3.event.keyCode==13) {
+                filterData();
+            }
+        } );
+        $cityField.on('keyup',function() {
+            if(d3.event.keyCode==13) {
+                filterData();
+            }
+        } );
+        $stateField.on('keyup',function() {
+            if(d3.event.keyCode==13) {
+                filterData();
+            }
+        } );
+        $countryField.on('keyup',function() {
+            if(d3.event.keyCode==13) {
+                filterData();
+            }
+        } );
+        $shapeField.on('keyup',function() {
+            if(d3.event.keyCode==13) {
+                filterData();
+            }
+        } );
+        pgList.on('click',function() {
+            console.log(d3.event.target['text'])
+            if(d3.event.target['text']) {
+                if(parseInt(d3.event.target['text'])) {
+                    let pageClicked = parseInt(d3.event.target['text'])
+                    currentPage = pageClicked;
+                    buildPages();
+                } else if(d3.event.target['text']==='\u00ab'&&currentPage!=1) {
+                    currentPage=currentPage-1;
+                    buildPages();
+                }else if(d3.event.target['text']==='\u00bb'&&currentPage!=numPages) {
+                    currentPage=currentPage+1;
+                    buildPages();
+                }
+                
+                
+            }
+            buildPages();
+
+            
+        });
+
+        buildPages();
+        //renderTable();
+    </script>
+</body>
+</html>
