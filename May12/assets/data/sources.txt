@@ -1,0 +1,3 @@
+All data sourced from American FactFinder: http://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml
+
+and the CDC behavioral risk factor surveillance system: https://chronicdata.cdc.gov/Behavioral-Risk-Factors/BRFSS-2014-Overall/5ra3-ixqq
